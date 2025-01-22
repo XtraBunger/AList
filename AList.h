@@ -83,25 +83,27 @@ public:
         int j = (left + 1) % theCapacity;
         // print out the contents of the deque
         for (int i{}; i < theSize; i++) {
-            std::cout << "Current index is: " << j << " and value stored is: " << objects[j] << '\n';
-            j = (j+1) % (theCapacity);
+            std::cout << "Current index bacjkshotsis: " << j << " and value stored is: " << objects[j] << '\n';
+            j = (j + 1) % (theCapacity);
         }
     }
 
     void ddisplay() const {
-    // print out the contents of the objects 
-    display();
-    std::cout << "Full array values\n";
-    std::cout << std::format("{:<10} {:<10} {:<10}\n", "Index", "Value", "Address");
+        // print out the contents of the objects 
+        display();
+        std::cout << "Full array values\n";
+        std::cout << std::format("{:<10} {:<10} {:<15}\n", "Index", "Value", "Address");
 
-    for (int i{}; i < theCapacity; i++) {
-        std::cout << std::format("{:<10} {:<10} {:<10}\n", i, objects[i], &objects[i]);
+        for (int i{}; i < theCapacity; i++) {
+            Object x = objects[i];
+            Object *y = &objects[i];
+            std::cout << std::format("{:<10} {:<10} {:<15}\n", i, x, reinterpret_cast<uintptr_t>(y));
+        }
+        std::cout << "The capacity is: " << theCapacity << '\n';
+        std::cout << "The size is: " << theSize << '\n';
+        std::cout << "Left variable is: " << left << '\n';
+        std::cout << "Right variable is: " << right << '\n';
     }
-    std::cout << "The capacity is: " << theCapacity << '\n';
-    std::cout << "The size is: " << theSize << '\n';
-    std::cout << "Left variable is: " << left << '\n';
-    std::cout << "Right variable is: " << right << '\n';
-}
 };
 
 #endif
