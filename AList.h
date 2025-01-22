@@ -88,11 +88,19 @@ public:
     }
 
     void ddisplay() const {
-        // print out the contents of the objects 
-        // array, and relevant variables, for debugging or verifying 
-        // correctness. 
-        // Implement this. 
+    // print out the contents of the objects 
+    display();
+    std::cout << "Full array values\n";
+    std::cout << "Index   Value       Address\n";
+
+    for (int i{}; i < theCapacity; i++) {
+        std::cout << i << "      " << objects[i] << "   " << &objects[i] << '\n';
     }
+    std::cout << "The capacity is: " << theCapacity << '\n';
+    std::cout << "The size is: " << theSize << '\n';
+    std::cout << "Left variable is: " << left << '\n';
+    std::cout << "Right variable is: " << right << '\n';
+}
 };
 
 #endif
