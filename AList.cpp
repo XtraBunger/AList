@@ -6,8 +6,7 @@ int main() {
 
     std::cout << "Is the list empty: " << (testList.empty() ? "Yessir" : "No") << "\n";
 
-    std::cout << "\nAdding elements to the right:\n";
-    for (int i = 1; i <= 5; ++i) {
+    for (int i {1}; i <= 5; ++i) {
         testList.addRight(i);
         std::cout << "Added " << i << " to the right. Current size: " << testList.size() << "\n";
     }

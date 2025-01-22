@@ -2,6 +2,7 @@
 #define ALIST_H
 
 #include <iostream>
+#include <format>
 
 template <typename Object>
 
@@ -91,10 +92,10 @@ public:
     // print out the contents of the objects 
     display();
     std::cout << "Full array values\n";
-    std::cout << "Index   Value       Address\n";
+    std::cout << std::format("{:<10} {:<10} {:<10}\n", "Index", "Value", "Address");
 
     for (int i{}; i < theCapacity; i++) {
-        std::cout << i << "      " << objects[i] << "   " << &objects[i] << '\n';
+        std::cout << std::format("{:<10} {:<10} {:<10}\n", i, objects[i], &objects[i]);
     }
     std::cout << "The capacity is: " << theCapacity << '\n';
     std::cout << "The size is: " << theSize << '\n';
