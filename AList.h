@@ -2,7 +2,7 @@
 #define ALIST_H
 
 #include <iostream>
-#include <format>
+#include <iomanip>
 
 template <typename Object>
 
@@ -39,7 +39,7 @@ public:
     void clear() {
         delete[] objects;
         theCapacity = 12;
-        objects = new Object[theCapacity];
+        objects = new Object[theCapacity]();
         theSize = 0;
         left = 0; // array index of location just before the left-most list element 
         right = 1; // array index just past the right-most list element
@@ -83,7 +83,7 @@ public:
         int j = (left + 1) % theCapacity;
         // print out the contents of the deque
         for (int i{}; i < theSize; i++) {
-            std::cout << "Current index bacjkshotsis: " << j << " and value stored is: " << objects[j] << '\n';
+            std::cout << "Current index is: " << j << " and value stored is: " << objects[j] << '\n';
             j = (j + 1) % (theCapacity);
         }
     }
@@ -92,17 +92,19 @@ public:
         // print out the contents of the objects 
         display();
         std::cout << "Full array values\n";
-        std::cout << std::format("{:<10} {:<10} {:<15}\n", "Index", "Value", "Address");
+        std::cout << std::left << std::setw(10) << "Index" << std::setw(20) << "Value" << std::setw(20) << "Address" << '\n';
 
-        for (int i{}; i < theCapacity; i++) {
-            Object x = objects[i];
-            Object *y = &objects[i];
-            std::cout << std::format("{:<10} {:<10} {:<15}\n", i, x, reinterpret_cast<uintptr_t>(y));
-        }
-        std::cout << "The capacity is: " << theCapacity << '\n';
-        std::cout << "The size is: " << theSize << '\n';
-        std::cout << "Left variable is: " << left << '\n';
-        std::cout << "Right variable is: " << right << '\n';
+    for (int i = 0; i < theCapacity; i++) {
+        Object x = objects[i];
+        Object *y = &objects[i];
+
+        std::cout << std::left << std::setw(10) << i << std::setw(20) << x << std::setw(20) << reinterpret_cast<uintptr_t>(y) << '\n';
+    }
+
+    std::cout << "The capacity is: " << theCapacity << '\n';
+    std::cout << "The size is: " << theSize << '\n';
+    std::cout << "Left value is: " << left << '\n';
+    std::cout << "Right value is: " << right << '\n';
     }
 };
 
