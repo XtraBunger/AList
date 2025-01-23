@@ -1,4 +1,4 @@
-GXX = gxxx
+GXX = g++
 CFLAGS = -g -Wall -std=c++20
 TARGET = AList
 OBJECTS = AList.o
