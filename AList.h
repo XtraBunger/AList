@@ -37,7 +37,6 @@ public:
     }
 
     void clear() {
-        delete[] objects;
         theCapacity = 12;
         theSize = 0;
         left = 0; // array index of location just before the left-most list element 
