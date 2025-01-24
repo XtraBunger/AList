@@ -39,7 +39,6 @@ public:
     void clear() {
         delete[] objects;
         theCapacity = 12;
-        objects = new Object[theCapacity]();
         theSize = 0;
         left = 0; // array index of location just before the left-most list element 
         right = 1; // array index just past the right-most list element
@@ -66,7 +65,6 @@ public:
         theSize--;
         right = (right - 1 + theCapacity) % theCapacity;
         Object x = objects[right];
-        objects[right] = Object(); // I think should clear
         return x;
     }
 
@@ -75,17 +73,18 @@ public:
         theSize--;
         left = (left + 1) % theCapacity;
         Object x = objects[left];
-        objects[left] = Object(); // I think should clear
         return x;
     }
 
     void display() const {
         int j = (left + 1) % theCapacity;
         // print out the contents of the deque
+        std::cout << "[ ";
         for (int i{}; i < theSize; i++) {
-            std::cout << "Current index is: " << j << " and value stored is: " << objects[j] << '\n';
+            std::cout << objects[j] << " ";
             j = (j + 1) % (theCapacity);
         }
+        std::cout << "]\n";
     }
 
     void ddisplay() const {
