@@ -1,22 +1,21 @@
 GXX = g++
 CFLAGS = -g -Wall -std=c++20
 TARGETS = AListAddLeft AListAddRight AListRemoveLeft AListRemoveRight
-OBJECTS = AList.o
 
 # Build all targets
 all: $(TARGETS)
 
 # Build individual test programs
-AListAddLeft: AListAddLeft.o $(OBJECTS)
+AListAddLeft: AListAddLeft.o
 	$(GXX) $(CFLAGS) -o $@ $^
 
-AListAddRight: AListAddRight.o $(OBJECTS)
+AListAddRight: AListAddRight.o
 	$(GXX) $(CFLAGS) -o $@ $^
 
-AListRemoveLeft: AListRemoveLeft.o $(OBJECTS)
+AListRemoveLeft: AListRemoveLeft.o
 	$(GXX) $(CFLAGS) -o $@ $^
 
-AListRemoveRight: AListRemoveRight.o $(OBJECTS)
+AListRemoveRight: AListRemoveRight.o
 	$(GXX) $(CFLAGS) -o $@ $^
 
 # Compile source files
@@ -25,7 +24,7 @@ AListRemoveRight: AListRemoveRight.o $(OBJECTS)
 
 # Clean up build files
 clean:
-	rm -f $(OBJECTS) $(TARGETS) *.o
+	rm -f $(TARGETS) *.o
 
 # Run test programs
 run: $(TARGETS)
