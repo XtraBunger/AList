@@ -1,20 +1,35 @@
 GXX = g++
 CFLAGS = -g -Wall -std=c++20
-TARGET = AListout
+TARGETS = AListAddLeft AListAddRight AListRemoveLeft AListRemoveRight
 OBJECTS = AList.o
 
-# Build target
-$(TARGET): $(OBJECTS)
-	$(GXX) $(CFLAGS) -o $(TARGET) $(OBJECTS)
+# Build all targets
+all: $(TARGETS)
+
+# Build individual test programs
+AListAddLeft: AListAddLeft.o $(OBJECTS)
+	$(GXX) $(CFLAGS) -o $@ $^
+
+AListAddRight: AListAddRight.o $(OBJECTS)
+	$(GXX) $(CFLAGS) -o $@ $^
+
+AListRemoveLeft: AListRemoveLeft.o $(OBJECTS)
+	$(GXX) $(CFLAGS) -o $@ $^
+
+AListRemoveRight: AListRemoveRight.o $(OBJECTS)
+	$(GXX) $(CFLAGS) -o $@ $^
 
 # Compile source files
-AList.o: AList.cpp AList.h
-	$(GXX) $(CFLAGS) -c AList.cpp
+%.o: %.cpp
+	$(GXX) $(CFLAGS) -c $< -o $@
 
 # Clean up build files
 clean:
-	rm -f $(OBJECTS) $(TARGET)
+	rm -f $(OBJECTS) $(TARGETS) *.o
 
-# Run the program
-run:
-	./$(TARGET)
+# Run test programs
+run: $(TARGETS)
+	@for target in $(TARGETS); do \
+	    echo "Running $$target"; \
+	    ./$$target; \
+	done
